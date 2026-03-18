@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import LabEntry from "../components/LabEntry.astro";
+
+const entries = (await getCollection("lab")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+{entries.length > 0 && (
+  <section id="lab" class="max-w-3xl mx-auto px-4 py-20">
+    <h2 class="text-sm text-text-muted mb-6 scroll-reveal">
+      <span class="text-brand">$</span> cat ~/lab/recent.log
+    </h2>
+
+    <div class="border-t border-border">
+      {entries.map((entry) => (
+        <LabEntry
+          date={entry.data.date}
+          title={entry.data.title}
+          tags={entry.data.tags}
+        />
+      ))}
+    </div>
+  </section>
+)}

@@ -1,0 +1,51 @@
+---
+import GlassCard from "../components/GlassCard.astro";
+import identity from "../content/identity.json";
+---
+
+<section id="identity" class="max-w-2xl mx-auto px-4 py-20">
+  <GlassCard class="scroll-reveal">
+    <div class="flex flex-col sm:flex-row sm:items-start gap-6">
+      <div class="flex-1">
+        <h2 class="text-xl font-bold text-text mb-1">{identity.name}</h2>
+        <p class="text-sm text-brand font-mono mb-1">{identity.lab}</p>
+        <p class="text-sm text-text-dim">{identity.role}</p>
+        <p class="text-sm text-text-dim leading-relaxed mt-4">{identity.bio}</p>
+
+        {identity.available && (
+          <div class="mt-4">
+            <span class="inline-flex items-center gap-1.5 text-xs text-accent">
+              <span class="w-1.5 h-1.5 rounded-full bg-status-live" aria-hidden="true"></span>
+              {identity.availableText}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="flex gap-4 mt-6 pt-4 border-t border-border">
+      <a
+        href={identity.links.github}
+        class="text-text-muted hover:text-text transition-colors text-sm"
+        aria-label="GitHub"
+      >
+        <span aria-hidden="true">[</span>github<span aria-hidden="true">]</span>
+      </a>
+      <a
+        href={identity.links.telegram}
+        class="text-text-muted hover:text-text transition-colors text-sm"
+        aria-label="Telegram"
+      >
+        <span aria-hidden="true">[</span>telegram<span aria-hidden="true">]</span>
+      </a>
+      <a
+        href={identity.links.email}
+        class="text-text-muted hover:text-text transition-colors text-sm"
+        aria-label="Email"
+      >
+        <span aria-hidden="true">[</span>email<span aria-hidden="true">]</span>
+      </a>
+    </div>
+  </GlassCard>
+</section>

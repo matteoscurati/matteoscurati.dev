@@ -1,0 +1,19 @@
+---
+interface Props {
+  date: Date;
+  title: string;
+  tags: string[];
+}
+
+const { date, title, tags } = Astro.props;
+
+const dateStr = date.toISOString().slice(0, 10);
+---
+
+<div class="lab-entry flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-2 border-b border-border text-sm">
+  <time datetime={dateStr} class="text-text-muted shrink-0 tabular-nums">{dateStr}</time>
+  <span class="text-text flex-1">{title}</span>
+  <span class="text-text-muted text-xs shrink-0">
+    {tags.map((t) => `#${t}`).join("  ")}
+  </span>
+</div>

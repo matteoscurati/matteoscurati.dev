@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const allProjects = await getCollection("projects");
+
+const independent = allProjects
+  .filter((p) => p.data.category === "independent")
+  .sort((a, b) => a.data.order - b.data.order);
+
+const consulting = allProjects
+  .filter((p) => p.data.category === "consulting")
+  .sort((a, b) => a.data.order - b.data.order);
+
+const career = allProjects
+  .filter((p) => p.data.category === "career")
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="projects" class="max-w-4xl mx-auto px-4 py-20">
+  <!-- Now building -->
+  <h2 class="text-sm text-text-muted mb-8 scroll-reveal">
+    <span class="text-brand">$</span> ls ~/projects/now
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+    {independent.map((p) => (
+      <ProjectCard
+        name={p.data.name}
+        description={p.data.description}
+        role={p.data.role}
+        period={p.data.period}
+        status={p.data.status}
+        tech={p.data.tech}
+        link={p.data.link}
+      />
+    ))}
+  </div>
+
+  <!-- Selected consulting -->
+  {consulting.length > 0 && (
+    <>
+      <h2 class="text-sm text-text-muted mb-8 scroll-reveal">
+        <span class="text-brand">$</span> ls ~/projects/consulting
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+        {consulting.map((p) => (
+          <ProjectCard
+            name={p.data.name}
+            description={p.data.description}
+            role={p.data.role}
+            period={p.data.period}
+            status={p.data.status}
+            tech={p.data.tech}
+            link={p.data.link}
+          />
+        ))}
+      </div>
+    </>
+  )}
+
+  <!-- Previously -->
+  {career.length > 0 && (
+    <>
+      <h2 class="text-sm text-text-muted mb-8 scroll-reveal">
+        <span class="text-brand">$</span> ls ~/projects/career
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {career.map((p) => (
+          <ProjectCard
+            name={p.data.name}
+            description={p.data.description}
+            role={p.data.role}
+            period={p.data.period}
+            status={p.data.status}
+            tech={p.data.tech}
+            link={p.data.link}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</section>

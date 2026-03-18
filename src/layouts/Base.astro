@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="agentauri — digital identity of a developer & AI researcher" />
+    <meta name="theme-color" content="#0a0a0f" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="agentauri" />
+    <meta property="og:description" content="Developer & AI Researcher" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "agentauri",
+        "url": "https://agentauri.dev",
+        "jobTitle": "Developer & AI Researcher"
+      }
+    </script>
+
+    <title>agentauri — building autonomous systems</title>
+  </head>
+  <body class="min-h-screen bg-bg text-text font-mono">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <main id="main">
+      <slot />
+    </main>
+  </body>
+</html>

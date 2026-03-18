@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../sections/Hero.astro";
+import Projects from "../sections/Projects.astro";
+import Lab from "../sections/Lab.astro";
+import Identity from "../sections/Identity.astro";
+import Footer from "../sections/Footer.astro";
+---
+
+<Base>
+  <Hero />
+  <Projects />
+  <Lab />
+  <Identity />
+  <Footer />
+</Base>
+
+<script>
+  // Scroll reveal via IntersectionObserver
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const revealTargets = document.querySelectorAll(
+    ".scroll-reveal, .lab-entry"
+  );
+
+  if (prefersReducedMotion) {
+    revealTargets.forEach((el) => el.classList.add("revealed"));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealTargets.forEach((el) => observer.observe(el));
+  }
+</script>

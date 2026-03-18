@@ -1,0 +1,23 @@
+---
+interface Props {
+  status: "live" | "beta" | "wip" | "shipped" | "archived" | "offline";
+}
+
+const { status } = Astro.props;
+
+const colorMap: Record<string, string> = {
+  live: "bg-status-live",
+  beta: "bg-status-beta",
+  wip: "bg-status-wip",
+  shipped: "bg-status-shipped",
+  archived: "bg-status-archived",
+  offline: "bg-status-offline",
+};
+
+const dotColor = colorMap[status];
+---
+
+<span class="inline-flex items-center gap-1.5 text-xs text-text-dim uppercase tracking-wider">
+  <span class:list={["w-1.5 h-1.5 rounded-full", dotColor]} aria-hidden="true"></span>
+  {status}
+</span>

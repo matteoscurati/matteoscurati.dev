@@ -1,0 +1,129 @@
+---
+import LogoShowcase from "../components/LogoShowcase.svelte";
+import TypedText from "../components/TypedText.svelte";
+---
+
+<section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center">
+  <!-- Logo showcase -->
+  <div class="mb-8 hero-fade" style="--fade-delay: 0ms">
+    <div class="text-sm text-text-muted mb-4 font-mono">
+      <span class="text-brand">$</span> ls ~/brand/palette
+    </div>
+    <LogoShowcase client:load />
+  </div>
+
+  <!-- Title -->
+  <h1 class="text-3xl font-bold tracking-tight text-text mb-3 hero-fade" style="--fade-delay: 1200ms">
+    agentauri
+  </h1>
+
+  <!-- Typed tagline -->
+  <div class="text-lg text-text-dim mb-8 h-7 hero-fade" style="--fade-delay: 1800ms">
+    <TypedText client:load text="∀ = aleph = agent" delayMs={2000} charSpeed={70} />
+  </div>
+
+  <!-- Rotating terminal prompt -->
+  <div class="text-sm text-text-muted mb-10 h-6 hero-fade" style="--fade-delay: 3200ms">
+    <span class="text-brand">$</span>
+    <span class="rotating-messages">
+      <span class="msg">shipping products with AI</span>
+      <span class="msg">15 years of engineering & product</span>
+      <span class="msg">from philosophy to code</span>
+      <span class="msg">building autonomous tools</span>
+    </span>
+    <span class="cursor-blink text-accent">_</span>
+  </div>
+
+  <!-- Nav pills -->
+  <nav class="flex gap-3 hero-fade" style="--fade-delay: 3800ms" aria-label="Section navigation">
+    <a href="#projects" class="nav-pill">projects</a>
+    <a href="#lab" class="nav-pill">lab</a>
+    <a href="#identity" class="nav-pill">identity</a>
+  </nav>
+</section>
+
+<style>
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: hero-in 0.6s ease-out forwards;
+    animation-delay: var(--fade-delay, 0ms);
+  }
+
+  @keyframes hero-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-pill {
+    padding: 0.375rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-dim);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .nav-pill:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+    background: rgba(196, 122, 90, 0.08);
+  }
+
+  .nav-pill:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Rotating messages */
+  .rotating-messages {
+    display: inline-grid;
+    vertical-align: bottom;
+  }
+
+  .msg {
+    grid-area: 1 / 1;
+    animation: rotate-msg 16s step-end infinite;
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  .msg:nth-child(1) { animation-delay: 0s; }
+  .msg:nth-child(2) { animation-delay: 4s; }
+  .msg:nth-child(3) { animation-delay: 8s; }
+  .msg:nth-child(4) { animation-delay: 12s; }
+
+  @keyframes rotate-msg {
+    0%, 25% { opacity: 1; }
+    25.1%, 100% { opacity: 0; }
+  }
+
+  .cursor-blink {
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .msg {
+      animation: none;
+    }
+
+    .msg:first-child {
+      opacity: 1;
+      position: static;
+    }
+  }
+</style>

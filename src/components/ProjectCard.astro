@@ -1,0 +1,50 @@
+---
+import GlassCard from "./GlassCard.astro";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  role: string;
+  period: string;
+  status: "live" | "beta" | "wip" | "shipped" | "archived";
+  tech: string[];
+  link?: string;
+}
+
+const { name, description, role, period, status, tech, link } = Astro.props;
+---
+
+{link ? (
+  <a href={link} class="block scroll-reveal group focus:outline-2 focus:outline-accent focus:outline-offset-2 rounded-lg">
+    <GlassCard class="h-full transition-colors duration-200 group-hover:border-brand/30">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-lg text-text font-semibold">{name}</h3>
+        <StatusBadge status={status} />
+      </div>
+      <p class="text-xs text-text-muted mb-3">{role} · {period}</p>
+      <p class="text-sm text-text-dim mb-4 leading-relaxed">{description}</p>
+      <div class="flex flex-wrap gap-1.5">
+        {tech.map((t) => (
+          <span class="text-xs px-2 py-0.5 rounded-md bg-brand/10 text-brand-dim font-mono">{t}</span>
+        ))}
+      </div>
+    </GlassCard>
+  </a>
+) : (
+  <div class="scroll-reveal">
+    <GlassCard class="h-full">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-lg text-text font-semibold">{name}</h3>
+        <StatusBadge status={status} />
+      </div>
+      <p class="text-xs text-text-muted mb-3">{role} · {period}</p>
+      <p class="text-sm text-text-dim mb-4 leading-relaxed">{description}</p>
+      <div class="flex flex-wrap gap-1.5">
+        {tech.map((t) => (
+          <span class="text-xs px-2 py-0.5 rounded-md bg-brand/10 text-brand-dim font-mono">{t}</span>
+        ))}
+      </div>
+    </GlassCard>
+  </div>
+)}
