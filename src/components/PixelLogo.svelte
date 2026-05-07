@@ -7,15 +7,27 @@
     eyeIndices: number[];
     buildGroups: number[][];
     size?: number;
+    viewBox?: number;
+    groupGap?: number;
+    innerGap?: number;
   }
 
-  let { rects, scheme, eyeIndices, buildGroups, size = 128 }: Props = $props();
+  let {
+    rects,
+    scheme,
+    eyeIndices,
+    buildGroups,
+    size = 128,
+    viewBox = 16,
+    groupGap = 130,
+    innerGap = 25,
+  }: Props = $props();
 
   const filterId = `glow-${scheme.name}`;
 
   // Semantic delay map — group-based entrance
-  const GROUP_GAP = 130;
-  const INNER_GAP = 25;
+  const GROUP_GAP = groupGap;
+  const INNER_GAP = innerGap;
   const delayMap = new Map<number, number>();
   buildGroups.forEach((group, gi) => {
     group.forEach((ri, ii) => {
@@ -69,19 +81,35 @@
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <svg
-  viewBox="0 0 16 16"
+  viewBox="0 0 {viewBox} {viewBox}"
   width={size}
   height={size}
   role="img"
-  aria-label="toro pixel logo — {scheme.name}"
+  aria-label="pixel logo — {scheme.name}"
   class="pixel-logo"
 >
   <defs>
     <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="0" stdDeviation="0.6" flood-color={scheme.glow} flood-opacity="0.55">
+      <feDropShadow
+        dx="0"
+        dy="0"
+        stdDeviation="0.6"
+        flood-color={scheme.glow}
+        flood-opacity="0.55"
+      >
         {#if entranceDone && !prefersReducedMotion}
-          <animate attributeName="stdDeviation" values="0.5;0.8;0.5" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="flood-opacity" values="0.4;0.65;0.4" dur="3s" repeatCount="indefinite" />
+          <animate
+            attributeName="stdDeviation"
+            values="0.5;0.8;0.5"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="flood-opacity"
+            values="0.4;0.65;0.4"
+            dur="3s"
+            repeatCount="indefinite"
+          />
         {/if}
       </feDropShadow>
     </filter>
@@ -143,9 +171,16 @@
   }
 
   @keyframes head-shake {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-3deg); }
-    75% { transform: rotate(3deg); }
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-3deg);
+    }
+    75% {
+      transform: rotate(3deg);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

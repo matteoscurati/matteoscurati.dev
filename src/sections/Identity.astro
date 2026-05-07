@@ -3,45 +3,51 @@ import GlassCard from "../components/GlassCard.astro";
 import identity from "../content/identity.json";
 ---
 
-<section id="identity" class="max-w-2xl mx-auto px-4 py-20">
+<section id="identity" class="mx-auto max-w-2xl px-4 py-20">
   <GlassCard class="scroll-reveal">
-    <div class="flex flex-col sm:flex-row sm:items-start gap-6">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
       <div class="flex-1">
-        <h2 class="text-xl font-bold text-text mb-1">{identity.name}</h2>
-        <p class="text-sm text-brand font-mono mb-1">{identity.lab}</p>
-        <p class="text-sm text-text-dim">{identity.role}</p>
-        <p class="text-sm text-text-dim leading-relaxed mt-4">{identity.bio}</p>
+        <h2 class="text-text mb-1 text-xl font-bold">{identity.name}</h2>
+        <p class="text-text-dim text-sm">{identity.role}</p>
+        <p class="text-text-dim mt-4 text-sm leading-relaxed">{identity.bio}</p>
 
-        {identity.available && (
-          <div class="mt-4">
-            <span class="inline-flex items-center gap-1.5 text-xs text-accent">
-              <span class="w-1.5 h-1.5 rounded-full bg-status-live" aria-hidden="true"></span>
-              {identity.availableText}
-            </span>
-          </div>
-        )}
+        {
+          identity.available && (
+            <div class="mt-4">
+              <span class="text-accent inline-flex items-center gap-1.5 text-xs">
+                <span
+                  class="bg-status-live h-1.5 w-1.5 rounded-full"
+                  aria-hidden="true"
+                />
+                {identity.availableText}
+              </span>
+            </div>
+          )
+        }
       </div>
     </div>
 
     <!-- Links -->
-    <div class="flex gap-4 mt-6 pt-4 border-t border-border">
+    <div class="border-border mt-6 flex gap-4 border-t pt-4">
       <a
         href={identity.links.github}
-        class="text-text-muted hover:text-text transition-colors text-sm"
+        class="text-text-muted hover:text-text text-sm transition-colors"
         aria-label="GitHub"
       >
         <span aria-hidden="true">[</span>github<span aria-hidden="true">]</span>
       </a>
       <a
         href={identity.links.telegram}
-        class="text-text-muted hover:text-text transition-colors text-sm"
+        class="text-text-muted hover:text-text text-sm transition-colors"
         aria-label="Telegram"
       >
-        <span aria-hidden="true">[</span>telegram<span aria-hidden="true">]</span>
+        <span aria-hidden="true">[</span>telegram<span aria-hidden="true"
+          >]</span
+        >
       </a>
       <a
         href={identity.links.email}
-        class="text-text-muted hover:text-text transition-colors text-sm"
+        class="text-text-muted hover:text-text text-sm transition-colors"
         aria-label="Email"
       >
         <span aria-hidden="true">[</span>email<span aria-hidden="true">]</span>

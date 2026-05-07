@@ -1,15 +1,19 @@
+export type LogoRole = "highlight" | "body" | "midtone" | "face" | "dark";
+
 export interface LogoRect {
   x: number;
   y: number;
   w: number;
   h: number;
-  role: "body" | "face" | "dark";
+  role: LogoRole;
 }
 
 export interface ColorScheme {
   name: string;
   description: string;
+  highlight: string;
   body: string;
+  midtone: string;
   face: string;
   dark: string;
   glow: string;
@@ -53,8 +57,10 @@ export const eyeIndices: number[] = [10, 11];
 export const brandScheme: ColorScheme = {
   name: "brand",
   description: "Terracotta — palette principale",
+  highlight: "#e0a282",
   body: "#c47a5a",
-  face: "#9a5030",
+  midtone: "#a86245",
+  face: "#7d4126",
   dark: "#2a1a12",
   glow: "#c47a5a",
 };
@@ -63,7 +69,9 @@ export const brandScheme: ColorScheme = {
 export const greenScheme: ColorScheme = {
   name: "green",
   description: "Green retro — terminale fosforescente",
+  highlight: "#7fff7f",
   body: "#33FF33",
+  midtone: "#22a022",
   face: "#1a8c1a",
   dark: "#0a0a0a",
   glow: "#33FF33",
@@ -73,10 +81,10 @@ export const allSchemes: ColorScheme[] = [brandScheme, greenScheme];
 
 // Semantic build groups — anatomical entrance order
 export const buildGroups: number[][] = [
-  [0, 1, 2, 3],        // Corna
-  [4, 5, 6],           // Guance + Fronte
-  [7, 8, 9],           // Lati occhi + Faccia
-  [10, 11],            // Occhi
-  [12, 13],            // Mascella + Muso
-  [14, 15, 16],        // Naso + Mento
+  [0, 1, 2, 3], // Corna
+  [4, 5, 6], // Guance + Fronte
+  [7, 8, 9], // Lati occhi + Faccia
+  [10, 11], // Occhi
+  [12, 13], // Mascella + Muso
+  [14, 15, 16], // Naso + Mento
 ];

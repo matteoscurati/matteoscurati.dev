@@ -17,8 +17,16 @@ pnpm-debug.log*
 .env
 .env.production
 
+# personal Claude Code config
+CLAUDE.local.md
+
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
+.vercel
+
+# playwright MCP screenshots / DOM snapshots
+.playwright-mcp/
+*.png

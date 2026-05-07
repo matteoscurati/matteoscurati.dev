@@ -18,12 +18,10 @@ import Footer from "../sections/Footer.astro";
 <script>
   // Scroll reveal via IntersectionObserver
   const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
+    "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  const revealTargets = document.querySelectorAll(
-    ".scroll-reveal, .lab-entry"
-  );
+  const revealTargets = document.querySelectorAll(".scroll-reveal, .lab-entry");
 
   if (prefersReducedMotion) {
     revealTargets.forEach((el) => el.classList.add("revealed"));
@@ -37,7 +35,7 @@ import Footer from "../sections/Footer.astro";
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
 
     revealTargets.forEach((el) => observer.observe(el));

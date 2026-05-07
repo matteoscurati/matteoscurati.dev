@@ -1,10 +1,25 @@
 <script lang="ts">
   import PixelLogo from "./PixelLogo.svelte";
-  import { toroShape, brandScheme, eyeIndices, buildGroups } from "../lib/logos";
+  import { brandScheme } from "../lib/logos";
+  import {
+    portraitShape,
+    portraitEyeIndices,
+    portraitBuildGroups,
+    PORTRAIT_VIEWBOX,
+  } from "../lib/portrait_data";
 </script>
 
 <div class="showcase">
-  <PixelLogo rects={toroShape} scheme={brandScheme} {eyeIndices} {buildGroups} size={128} />
+  <PixelLogo
+    rects={portraitShape}
+    scheme={brandScheme}
+    eyeIndices={portraitEyeIndices}
+    buildGroups={portraitBuildGroups}
+    size={128}
+    viewBox={PORTRAIT_VIEWBOX}
+    groupGap={120}
+    innerGap={8}
+  />
 </div>
 
 <style>

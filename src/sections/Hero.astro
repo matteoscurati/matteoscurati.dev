@@ -3,27 +3,43 @@ import LogoShowcase from "../components/LogoShowcase.svelte";
 import TypedText from "../components/TypedText.svelte";
 ---
 
-<section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center">
+<section
+  class="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center"
+>
   <!-- Logo showcase -->
-  <div class="mb-8 hero-fade" style="--fade-delay: 0ms">
-    <div class="text-sm text-text-muted mb-4 font-mono">
+  <div class="hero-fade mb-8" style="--fade-delay: 0ms">
+    <div class="text-text-muted mb-4 font-mono text-sm">
       <span class="text-brand">$</span> ls ~/brand/palette
     </div>
     <LogoShowcase client:load />
   </div>
 
   <!-- Title -->
-  <h1 class="text-3xl font-bold tracking-tight text-text mb-3 hero-fade" style="--fade-delay: 1200ms">
-    agentauri
+  <h1
+    class="text-text hero-fade mb-3 text-3xl font-bold tracking-tight"
+    style="--fade-delay: 1200ms"
+  >
+    Matteo Scurati
   </h1>
 
   <!-- Typed tagline -->
-  <div class="text-lg text-text-dim mb-8 h-7 hero-fade" style="--fade-delay: 1800ms">
-    <TypedText client:load text="∀ = aleph = agent" delayMs={2000} charSpeed={70} />
+  <div
+    class="text-text-dim hero-fade mb-8 h-7 text-lg"
+    style="--fade-delay: 1800ms"
+  >
+    <TypedText
+      client:load
+      text="whoami → senior product engineer & ai builder"
+      delayMs={2000}
+      charSpeed={45}
+    />
   </div>
 
   <!-- Rotating terminal prompt -->
-  <div class="text-sm text-text-muted mb-10 h-6 hero-fade" style="--fade-delay: 3200ms">
+  <div
+    class="text-text-muted hero-fade mb-10 h-6 text-sm"
+    style="--fade-delay: 3200ms"
+  >
     <span class="text-brand">$</span>
     <span class="rotating-messages">
       <span class="msg">shipping products with AI</span>
@@ -35,7 +51,11 @@ import TypedText from "../components/TypedText.svelte";
   </div>
 
   <!-- Nav pills -->
-  <nav class="flex gap-3 hero-fade" style="--fade-delay: 3800ms" aria-label="Section navigation">
+  <nav
+    class="hero-fade flex gap-3"
+    style="--fade-delay: 3800ms"
+    aria-label="Section navigation"
+  >
     <a href="#projects" class="nav-pill">projects</a>
     <a href="#lab" class="nav-pill">lab</a>
     <a href="#identity" class="nav-pill">identity</a>
@@ -91,14 +111,28 @@ import TypedText from "../components/TypedText.svelte";
     white-space: nowrap;
   }
 
-  .msg:nth-child(1) { animation-delay: 0s; }
-  .msg:nth-child(2) { animation-delay: 4s; }
-  .msg:nth-child(3) { animation-delay: 8s; }
-  .msg:nth-child(4) { animation-delay: 12s; }
+  .msg:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .msg:nth-child(2) {
+    animation-delay: 4s;
+  }
+  .msg:nth-child(3) {
+    animation-delay: 8s;
+  }
+  .msg:nth-child(4) {
+    animation-delay: 12s;
+  }
 
   @keyframes rotate-msg {
-    0%, 25% { opacity: 1; }
-    25.1%, 100% { opacity: 0; }
+    0%,
+    25% {
+      opacity: 1;
+    }
+    25.1%,
+    100% {
+      opacity: 0;
+    }
   }
 
   .cursor-blink {
@@ -106,8 +140,13 @@ import TypedText from "../components/TypedText.svelte";
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
