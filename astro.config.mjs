@@ -2,8 +2,10 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  integrations: [svelte()],
+  site: "https://matteoscurati.dev",
+  integrations: [svelte(), sitemap()],
   vite: { plugins: [tailwindcss()] },
 });

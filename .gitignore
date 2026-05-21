@@ -19,6 +19,8 @@ pnpm-debug.log*
 
 # personal Claude Code config
 CLAUDE.local.md
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
 
 # macOS-specific files
 .DS_Store
@@ -30,3 +32,5 @@ CLAUDE.local.md
 # playwright MCP screenshots / DOM snapshots
 .playwright-mcp/
 *.png
+# but keep product/SEO assets shipped from public/
+!public/*.png
